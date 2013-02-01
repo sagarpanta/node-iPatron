@@ -1,23 +1,36 @@
 var port = process.env.PORT || 1212;
 var io = require('socket.io').listen(port);
-console.log('Port: ' + port)l
-var redis = require('redis');
+console.log('Port: ' + port);
 
- publisher = redis.createClient();
- publisher1 = redis.createClient();
- subscriber = redis.createClient();
- date_subscriber = redis.createClient();
+
+if (process.env.REDISTOGO_URL) {
+	var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+	var redis = 
+	 publisher = require("redis").createClient(rtg.port, rtg.hostname);
+	 publisher1 = require("redis").createClient(rtg.port, rtg.hostname);
+	 subscriber = require("redis").createClient(rtg.port, rtg.hostname);
+	 date_subscriber = require("redis").createClient(rtg.port, rtg.hostname);
+	 redis.auth(rtg.auth.split(":")[1]);
+} else {
+	var redis = require('redis');
+	 publisher = redis.createClient();
+	 publisher1 = redis.createClient();
+	 subscriber = redis.createClient();
+	 date_subscriber = redis.createClient();
+}
+
+
  subscriber.subscribe('message');
  date_subscriber.subscribe('date');
 
 io.configure(function () { 
-  io.set("transports", ["websocket"]); 
+  io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
 });
 
 var pg = require('pg');
 var conString = "tcp://postgres:password@localhost:5432/mobileCRM";
-var _date = '01/01/1900';
+var _date = '01/01/2999';
 
 var client = new pg.Client(conString);
 client.connect(function(err) {
