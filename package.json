@@ -5,7 +5,8 @@
     "pg": "0.12.3",
     "socket.io": "0.9.13",
 	"redis" : "0.8.2",
-	"redis-url": "0.1.0"
+	"redis-url": "0.1.0",
+	"express": "3.0.0"
   }, 
   "engines": {
 	"node": "0.8.0",
