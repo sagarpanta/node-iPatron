@@ -1,10 +1,14 @@
+
 var express = require('express');
 var	app = express();
-
-var io = require('socket.io').listen(app);
-
+var http = require('http');
+var server = http.createServer(app);
 var port = process.env.PORT || 1212;
 app.listen(port);
+var io = require('socket.io').listen(server);
+
+
+
 
 if (process.env.REDISTOGO_URL) {
 	var rtg   = require("url").parse(process.env.REDISTOGO_URL);
