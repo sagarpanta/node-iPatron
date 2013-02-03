@@ -36,7 +36,7 @@ io.configure(function () {
 });
 
 var pg = require('pg');
-var conString = "tcp://kcqsfhpgajkngr:e_-pso8c7Wrik9VP1iliXCG02M@ec2-23-21-209-221.computer-1.amazonaws.com:5432/d2tcerg117ociu";
+var conString = "tcp://kcqsfhpgajkngr:e_-pso8C7Wrik9VP1iliXCG02M@ec2-23-21-209-221.compute-1.amazonaws.com:5432/d2tcerg117ociu";
 var _date = '01/01/2999';
 
 
