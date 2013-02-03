@@ -10,11 +10,10 @@ server.listen(port);
 
 if (process.env.REDISTOGO_URL) {
 	var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-	var redis = 
-	 publisher = require("redis").createClient(rtg.port, rtg.hostname);
-	 publisher1 = require("redis").createClient(rtg.port, rtg.hostname);
-	 subscriber = require("redis").createClient(rtg.port, rtg.hostname);
-	 date_subscriber = require("redis").createClient(rtg.port, rtg.hostname);
+	var	publisher = require("redis").createClient(rtg.port, rtg.hostname);
+	var publisher1 = require("redis").createClient(rtg.port, rtg.hostname);
+	var ubscriber = require("redis").createClient(rtg.port, rtg.hostname);
+	var date_subscriber = require("redis").createClient(rtg.port, rtg.hostname);
 	 redis.auth(rtg.auth.split(":")[1]);
 } else {
 	var redis = require('redis');
