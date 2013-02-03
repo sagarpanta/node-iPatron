@@ -12,9 +12,12 @@ if (process.env.REDISTOGO_URL) {
 	var rtg   = require("url").parse(process.env.REDISTOGO_URL);
 	var	publisher = require("redis").createClient(rtg.port, rtg.hostname);
 	var publisher1 = require("redis").createClient(rtg.port, rtg.hostname);
-	var ubscriber = require("redis").createClient(rtg.port, rtg.hostname);
+	var subscriber = require("redis").createClient(rtg.port, rtg.hostname);
 	var date_subscriber = require("redis").createClient(rtg.port, rtg.hostname);
-	 redis.auth(rtg.auth.split(":")[1]);
+	publisher.auth(rtg.auth.split(":")[1]);
+	publisher1.auth(rtg.auth.split(":")[1]);
+	subscriber.auth(rtg.auth.split(":")[1]);
+	date_subscriber.auth(rtg.auth.split(":")[1]);
 } else {
 	var redis = require('redis');
 	 publisher = redis.createClient();
