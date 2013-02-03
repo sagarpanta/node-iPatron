@@ -4,10 +4,8 @@ var	app = express();
 var http = require('http');
 var server = http.createServer(app);
 var port = process.env.PORT || 1212;
-app.listen(port);
 var io = require('socket.io').listen(server);
-
-
+server.listen(port);
 
 
 if (process.env.REDISTOGO_URL) {
