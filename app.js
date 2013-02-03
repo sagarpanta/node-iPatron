@@ -36,18 +36,19 @@ io.configure(function () {
 });
 
 var pg = require('pg');
-//var conString = "tcp://postgres:password@localhost:5432/mobileCRM";
+var conString = "tcp://postgres:password@localhost:5432/mobileCRM";
 var _date = '01/01/2999';
 
 
-
-
+/*
 pg.connect(process.env.DATABASE_URL, function(err, client) {
 	checkDB(_date);
 });
 
-/*
-var client = new pg.Client(conString);
+*/
+
+
+var client = new pg.Client(process.env.DATABASE_URL || conString);
 client.connect(function(err) {
   client.query('SELECT NOW() AS "theTime"', function(err, result) {
       console.log(result.rows[0].theTime);
@@ -55,7 +56,7 @@ client.connect(function(err) {
       //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
   });
 });
-*/
+
 
 function checkDB(_date){
 		console.log('i m here');
