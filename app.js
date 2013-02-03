@@ -84,7 +84,7 @@ function checkDB(_date){
 
  
 io.sockets.on('connection', function (socket) {
-  io.sockets.emit('news', { will: 'be received by everyone'});
+  io.sockets.emit('news', { will: process.env.DATABASE_URL});
 
     subscriber.on('message' , function(channel,offer_object) {
 		socket.emit('new_offer', JSON.parse(offer_object));
