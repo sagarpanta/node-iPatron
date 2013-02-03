@@ -35,7 +35,7 @@ io.configure(function () {
   io.set("polling duration", 10); 
 });
 
-var pg = require('pg').native;
+var pg = require('pg');
 var conString =  process.env.DATABASE_URL || "tcp://postgres:password@localhost:5432/mobileCRM";
 var _date = '01/01/2999';
 
@@ -49,12 +49,11 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 console.log('***********************************: ' + process.env.DATABASE_URL);
 
 var client = new pg.Client(conString);
-client.connect(function(err) {
-  client.query('SELECT NOW() AS "theTime"', function(err, result) {
-      console.log(result.rows[0].theTime);
-	  checkDB(_date);
-      //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
-  });
+client.connect();
+client.query('SELECT NOW() AS "theTime"', function(err, result) {
+  console.log(result.rows[0].theTime);
+  checkDB(_date);
+  //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
 });
 
 
