@@ -50,6 +50,7 @@ console.log('***********************************: ' + process.env.DATABASE_URL);
 
 var client = new pg.Client(conString);
 client.connect(function(err) {
+  console.log('******************************************************************');
   client.query('SELECT NOW() AS "theTime"', function(err, result) {
       console.log(result.rows[0].theTime);
 	  checkDB(_date);
