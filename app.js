@@ -49,13 +49,12 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 console.log('***********************************: ' + process.env.DATABASE_URL);
 
 var client = new pg.Client(conString);
-client.connect(function(err) {
-  client.query('SELECT NOW() AS "theTime"', function(err, result) {
+client.connect();
+client.query('SELECT NOW() AS "theTime"', function(err, result) {
       console.log(result.rows[0].theTime);
 	  checkDB(_date);
       //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
   });
-});
 
 
 function checkDB(_date){
@@ -84,7 +83,7 @@ function checkDB(_date){
 
  
 io.sockets.on('connection', function (socket) {
-  io.sockets.emit('news', { will: process.env.DATABASE_URL});
+  io.sockets.emit('news', { will: 'be received by everyone'});
 
     subscriber.on('message' , function(channel,offer_object) {
 		socket.emit('new_offer', JSON.parse(offer_object));
