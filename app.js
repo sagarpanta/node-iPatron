@@ -46,7 +46,7 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
 
 */
 
-console.log('***********************************: ' + process.env.DATABASE_URL
+console.log('***********************************: ' + process.env.DATABASE_URL);
 
 var client = new pg.Client(conString);
 client.connect(function(err) {
